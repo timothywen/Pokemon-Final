@@ -18,3 +18,8 @@ html {
     font-size: 1.2rem;
 }
 
+#errorMessage {
+    font-size: 2rem;
+    color: red;
+    font-weight: bold;
+}
