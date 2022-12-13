@@ -52,4 +52,23 @@ app.get("/", (request, response) => {
 app.get("/display", (request, response) => {
 
 
-app.listen(portNumber);
+app.get("/add", (request, response) => {
+    response.render("addPokemon");
+})
+
+app.post("/processAdd", (request, response) => {
+    let {name, level} = request.body;
+    let nickname = request.body.custom;
+    let isShiny = request.body.shiny;
+    let time = new Date(Date.now());
+    
+    let vars = {
+        name: name,
+        custom: nickname,
+        shiny: isShiny ? "yes" : "no",
+        level: level,
+        time: time
+    };
+
+    response.render("processingAdd", vars);
+})
