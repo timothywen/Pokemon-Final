@@ -12,10 +12,10 @@
 	<form id="reviewForm" method="post" action="http://localhost:5000/processAdd">
 		<fieldset>
             
-			<label><strong>Pokemon: </strong><input type="text" name="name"/></label>
-			<label><strong>Custom Name: </strong><input type="text" name="custom"/></label>
+			<label><strong>Pokemon: </strong><input type="text" name="name" required/></label>
+			<label><strong>Custom Name: </strong><input type="text" name="custom" required/></label>
 			<label><strong>Shiny:</strong> <input type="checkbox" name="shiny"></label><br><br>
-			<label><strong>Level:</strong><input type="number" name="level" min=1 max=100></label><br><br>
+			<label><strong>Level:</strong><input type="number" name="level" min=1 max=100 required></label><br><br>
 		</fieldset>
 
 		<br>

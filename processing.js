@@ -15,6 +15,8 @@ const app = express();
 const httpSuccessStatus = 200;
 const portNumber = 5000;
 app.listen(portNumber);
+//include css file
+app.use(express.static(process.cwd() + '/templates/'));
 
 console.log(`Web server started and running at http://localhost:${portNumber}`);
 /*=================================================*/
@@ -54,6 +56,8 @@ const password = process.env.MONGO_DB_PASSWORD;
 
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 import {MongoClient, ServerApiVersion} from "mongodb";
+
+import { table } from 'console';
 import { getSystemErrorMap } from 'util';
 const uri = `mongodb+srv://${userName}:${password}@poke-man.0zopgjt.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -82,6 +86,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.get("/", (request, response) => {
     response.render("index");
 });
+
 
 async function getPics(name){
     const Dex = new Pokedex();
@@ -128,10 +133,10 @@ app.get("/display", async(request, response) => {
         tableHTML += `<strong>Level:</strong>${each.level}<br>`;
         await Dex.getPokemonByName(each.name).then(async(result) => {
             let spriteURL = result.sprites.front_default;
-            if(each.shiny === "yes"){
+            if (each.shiny === "yes") {
                 spriteURL = result.sprites.front_shiny;
             }
-            tableHTML += `<img src="${spriteURL}"  height="300" alt="pokeImg"><br>`;
+            tableHTML += `<img src="${spriteURL}" dheight="300" alt="pokeImg"><br>`;
         });
     }
 

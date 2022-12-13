@@ -1,0 +1,20 @@
+html {
+    font-size: 14px;
+}
+
+#home-page {
+    background-image: url('pokeball.png');
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#intro {
+    font-size: 1.5rem;
+}
+
+#home-page li {
+    font-size: 1.2rem;
+}
+
