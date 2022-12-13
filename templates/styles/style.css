@@ -3,11 +3,9 @@ html {
 }
 
 #home-page {
-    background-image: url('pokeball.png');
-    background-repeat: no-repeat;
-    background-color: white;
-    background-position: center;
-    background-attachment: fixed;
+
+    background-color: beige;
+    font-size: 5rem;
 }
 
 #intro {
