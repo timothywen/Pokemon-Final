@@ -1,9 +1,12 @@
-const http = require('http');
-const fs = require('fs');
-const express = require('express');
-const path = require("path");
+const http = import('http');
+const fs = import('fs');
+import express from 'express';
+import path from 'path';
+import { dirname } from 'path';
+import bodyParser from 'body-parser';
+import Pokedex from 'pokedex-promise-v2';
+
 const app = express();
-const bodyParser = require("body-parser");
 const httpSuccessStatus = 200;
 const portNumber = 5000;
 app.listen(portNumber);
@@ -40,6 +43,7 @@ process.stdin.on('readable', () => {
 /*=================================================*/
 /*                 Path Processing                 */
 /*=================================================*/
+const __dirname = dirname("templates");
 const publicPath = path.resolve(__dirname, "templates");
 app.set("views", publicPath);
 app.set("view engine", "ejs");
@@ -51,7 +55,21 @@ app.get("/", (request, response) => {
 
 
 app.get("/display", (request, response) => {
+    const Dex = new Pokedex();
+    let tableHTML = "";
 
+    Dex.getPokemonByName("litwick")
+        .then((result) => {
+            let spriteURL = result.sprites.front_default;
+            // TODO: for debugging, remove later 
+            console.log(spriteURL);
+            tableHTML += `hi`;
+        })
+        .catch((error) => {
+            console.log("There was an ERROR: ", error);
+        });
+    
+    response.render("displayBox", {table: tableHTML});
 });
 
 
@@ -66,7 +84,7 @@ app.post("/processAdd", (request, response) => {
     let time = new Date(Date.now());
     
     let vars = {
-        name: name,
+        name: name.toLowerCase(),
         custom: nickname,
         shiny: isShiny ? "yes" : "no",
         level: level,
