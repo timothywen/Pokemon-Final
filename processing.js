@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 import Pokedex from 'pokedex-promise-v2';
 import ejs from 'ejs';
 import { render } from 'ejs';
+import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
 const app = express();
 
@@ -45,12 +47,13 @@ process.stdin.on('readable', () => {
 /*=================================================*/
 /*               Mongo DB Processing               */
 /*=================================================*/
-require("dotenv").config({ path: path.resolve(__dirname, 'credentials/.env') }) 
+dotenv.config({ path: path.resolve(process.cwd(), 'credentials/.env') });
+
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
-const {MongoClient, ServerApiVersion} = require("mongodb");
+import {MongoClient, ServerApiVersion} from "mongodb";
 const uri = `mongodb+srv://${userName}:${password}@poke-man.0zopgjt.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
