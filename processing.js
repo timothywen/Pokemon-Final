@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const httpSuccessStatus = 200;
 const portNumber = 5000;
+app.listen(portNumber);
 
 console.log(`Web server started and running at http://localhost:${portNumber}`);
 /*=================================================*/
@@ -50,7 +51,5 @@ app.get("/", (request, response) => {
 
 app.get("/display", (request, response) => {
 
-    //not known how to do yet
-});
 
 app.listen(portNumber);

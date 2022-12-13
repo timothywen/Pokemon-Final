@@ -4,14 +4,12 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Add Pokemon</title>
-
-
 </head>
 
 <body>
 	<h1>Add Pokemon</h1>
 
-	<form id = "reviewForm" method="post" action="http://localhost:5000/processAdd">
+	<form id="reviewForm" method="post" action="http://localhost:5000/processAdd">
 		<fieldset>
             
 			<label><strong>Pokemon: </strong><input type="text" name="name"/></label>
@@ -26,12 +24,12 @@
 	</form>
 
 	<hr>
-	<a href = "/">Menu</a>
+	<a href="/">Menu</a>
 
 	<script>
 		window.onsubmit = main;
 
-		function main(){
+		function main() {
 			return confirm("Are you sure you want to put send this Pokemon to Professor Oaks? You will not be able to retrieve it later.");
 		}
 	</script>
