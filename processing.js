@@ -5,6 +5,8 @@ import path from 'path';
 import { dirname } from 'path';
 import bodyParser from 'body-parser';
 import Pokedex from 'pokedex-promise-v2';
+import ejs from 'ejs';
+import { render } from 'ejs';
 
 const app = express();
 const httpSuccessStatus = 200;
