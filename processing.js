@@ -100,6 +100,6 @@ app.post("/processAdd", (request, response) => {
         time: time
     };
 
-    add(variables)
+    add(vars)
     response.render("processingAdd", vars);
 })
