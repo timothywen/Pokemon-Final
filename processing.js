@@ -56,7 +56,9 @@ const password = process.env.MONGO_DB_PASSWORD;
 
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 import {MongoClient, ServerApiVersion} from "mongodb";
+
 import { table } from 'console';
+import { getSystemErrorMap } from 'util';
 const uri = `mongodb+srv://${userName}:${password}@poke-man.0zopgjt.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -86,25 +88,59 @@ app.get("/", (request, response) => {
 });
 
 
-app.get("/display", async (request, response) => {
+async function getPics(name){
     const Dex = new Pokedex();
-    let tableHTML = "<h1>";
+    let returnVal = "";
+    await Dex.getPokemonByName(name).then((result) => {
+        let spriteURL = result.sprites.front_default;
+        returnVal = `<img src="${spriteURL}"  height="300" alt="pokeImg">`;
+    })
+    .catch((error) => {
+        console.log("There was an ERROR: ", error);
+    });
 
-    await Dex.getPokemonByName("litwick")
-        .then(　async (result) => {
-            let spriteURL = result.sprites.front_default;
-            // console.log(`\n${spriteURL}`);
-            tableHTML += `<img src="${spriteURL}" alt=sprite>`;
-            console.log(tableHTML);
-        })
+    return returnVal;
+}
+
+async function getAll(){
+    try {
+        await client.connect();
+        let filter = {};
+        const cursor = client.db(databaseAndCollection.db)
+        .collection(databaseAndCollection.collection)
+        .find(filter);
         
-        .catch((error) => {
-            console.log("There was an ERROR: ", error);
-        });
+        const result = await cursor.toArray();
+        return result;
 
-    console.log("rendering html");
-    let vars = {table: tableHTML};
-    response.render("displayBox", vars);
+    } catch (e) {
+        await client.close();
+        console.error(e);
+        return null;
+    }
+}
+
+app.get("/display", async(request, response) => {   
+    const Dex = new Pokedex(); 
+    let tableHTML = "";
+
+    let pokemon = await getAll();
+
+    for (const each of pokemon){
+        tableHTML += `<hr><strong>Name:</strong>${each.name}<br>`;
+        tableHTML += `<strong>Custom Name:</strong>${each.custom}<br>`;
+        tableHTML += `<strong>Shiny:</strong>${each.shiny}<br>`;
+        tableHTML += `<strong>Level:</strong>${each.level}<br>`;
+        await Dex.getPokemonByName(each.name).then(async(result) => {
+            let spriteURL = result.sprites.front_default;
+            if (each.shiny === "yes") {
+                spriteURL = result.sprites.front_shiny;
+            }
+            tableHTML += `<img src="${spriteURL}" dheight="300" alt="pokeImg"><br>`;
+        });
+    }
+
+    response.render("displayBox", {table: tableHTML});
 });
 
 
