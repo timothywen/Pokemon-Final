@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const httpSuccessStatus = 200;
 const portNumber = 5000;
+app.listen(portNumber);
 
 /*=================================================*/
 /*                For command line                 */
@@ -46,6 +47,7 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 
-app.get("/menu", (request, response) => {
-    response.render("index");
-});
+
+app.get("/processAdd", (request, response) => {
+    response.render("/addPokemon");
+})
