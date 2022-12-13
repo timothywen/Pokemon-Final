@@ -145,10 +145,10 @@ app.get("/display", async(request, response) => {
 
 
 app.get("/add", (request, response) => {
-    response.render("addPokemon");
+    response.render("addPokemon", {message:""});
 });
 
-app.post("/processAdd", (request, response) => {
+app.post("/processAdd", async(request, response) => {
     let {name, level} = request.body;
     let nickname = request.body.custom;
     let isShiny = request.body.shiny;
@@ -162,6 +162,14 @@ app.post("/processAdd", (request, response) => {
         time: time
     };
 
-    add(vars);
-    response.render("processingAdd", vars);
+
+    try{
+        const Dex = new Pokedex(); 
+        await Dex.getPokemonByName(name.toLowerCase());
+
+        add(vars);
+        response.render("processingAdd", vars);
+    }catch(e){
+        response.render("addPokemon",{message:"<hr>Invalid Pokemon Name"});
+    }
 });
