@@ -49,7 +49,7 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 
+app.get("/display", (request, response) => {
 
-app.get("/processAdd", (request, response) => {
-    response.render("/addPokemon");
-})
+
+app.listen(portNumber);
