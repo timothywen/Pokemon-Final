@@ -1,8 +1,18 @@
-Team Members: Timothy Wen, Stanley Zhu, Matthew Mei
+# Team Members 
+  - Timothy Wen,
+  - Stanley Zhu
+  - Matthew Mei
 
-App Description:
+# App Description & Usage
+Web app that allows you to add pokemon to a storage box to keep track of pokemon that you've caught while playing any of the pokemon games. 
 
+## Adding Pokemon
+Users can add pokemon one by one, which will be stored in our MongoDB database.
 
-API Link: https://pokeapi.co
+## Displaying Your Pokemon
+The displayBox page will display a list of all pokemon currently in the user's database.
 
-YouTube Demo Video:
+# API Link
+https://pokeapi.co
+
+# YouTube Demo Video
