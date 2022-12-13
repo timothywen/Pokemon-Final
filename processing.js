@@ -15,6 +15,8 @@ const app = express();
 const httpSuccessStatus = 200;
 const portNumber = 5000;
 app.listen(portNumber);
+//include css file
+app.use(express.static(process.cwd() + '/templates/'));
 
 console.log(`Web server started and running at http://localhost:${portNumber}`);
 /*=================================================*/
@@ -54,6 +56,7 @@ const password = process.env.MONGO_DB_PASSWORD;
 
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 import {MongoClient, ServerApiVersion} from "mongodb";
+import { table } from 'console';
 const uri = `mongodb+srv://${userName}:${password}@poke-man.0zopgjt.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -83,22 +86,25 @@ app.get("/", (request, response) => {
 });
 
 
-app.get("/display", (request, response) => {
+app.get("/display", async (request, response) => {
     const Dex = new Pokedex();
-    let tableHTML = "";
+    let tableHTML = "<h1>";
 
-    Dex.getPokemonByName("litwick")
-        .then((result) => {
+    await Dex.getPokemonByName("litwick")
+        .then(　async (result) => {
             let spriteURL = result.sprites.front_default;
-            // TODO: for debugging, remove later 
-            console.log(spriteURL);
-            tableHTML += `hi`;
+            // console.log(`\n${spriteURL}`);
+            tableHTML += `<img src="${spriteURL}" alt=sprite>`;
+            console.log(tableHTML);
         })
+        
         .catch((error) => {
             console.log("There was an ERROR: ", error);
         });
-    
-    response.render("displayBox", {table: tableHTML});
+
+    console.log("rendering html");
+    let vars = {table: tableHTML};
+    response.render("displayBox", vars);
 });
 
 
