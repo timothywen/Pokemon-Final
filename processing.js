@@ -8,6 +8,7 @@ const httpSuccessStatus = 200;
 const portNumber = 5000;
 app.listen(portNumber);
 
+console.log(`Web server started and running at http://localhost:${portNumber}`);
 /*=================================================*/
 /*                For command line                 */
 /*=================================================*/
@@ -35,8 +36,9 @@ process.stdin.on('readable', () => {
     }
 });
 
+
 /*=================================================*/
-/*                                 */
+/*                 Path Processing                 */
 /*=================================================*/
 const publicPath = path.resolve(__dirname, "templates");
 app.set("views", publicPath);
