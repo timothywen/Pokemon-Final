@@ -1,5 +1,5 @@
 # Team Members 
-  - Timothy Wen,
+  - Timothy Wen
   - Stanley Zhu
   - Matthew Mei
 
