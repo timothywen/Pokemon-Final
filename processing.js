@@ -37,3 +37,15 @@ process.stdin.on('readable', () => {
 /*=================================================*/
 /*                                 */
 /*=================================================*/
+const publicPath = path.resolve(__dirname, "templates");
+app.set("views", publicPath);
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.get("/", (request, response) => {
+    response.render("index");
+});
+
+app.get("/menu", (request, response) => {
+    response.render("index");
+});
