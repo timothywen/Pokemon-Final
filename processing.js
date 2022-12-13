@@ -48,6 +48,9 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 
+app.get("/display", (request, response) => {
 
+    //not known how to do yet
+});
 
 app.listen(portNumber);
