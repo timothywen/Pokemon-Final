@@ -1,7 +1,7 @@
 body{
-    background-color: white;
-    background-image: url(pokeball.png);
+    background-image: url("pokeball.png");
     background-repeat: no-repeat;
+    background-color: white;
     background-position: center;
     background-attachment: fixed;
 }

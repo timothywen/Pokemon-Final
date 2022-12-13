@@ -49,6 +49,8 @@ app.get("/", (request, response) => {
     response.render("index");
 });
 
+app.get("/display", (request, response) => {
+
 
 app.get("/add", (request, response) => {
     response.render("addPokemon");
