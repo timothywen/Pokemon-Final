@@ -8,7 +8,7 @@ const httpSuccessStatus = 200;
 const portNumber = 5000;
 
 /*=================================================*/
-/*              For command line                   */
+/*                For command line                 */
 /*=================================================*/
 const prompt = "Stop to shutdown the server: ";
 process.stdout.write(prompt);
@@ -34,4 +34,6 @@ process.stdin.on('readable', () => {
     }
 });
 
-/**/
+/*=================================================*/
+/*                                 */
+/*=================================================*/
