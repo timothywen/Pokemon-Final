@@ -46,7 +46,7 @@ const password = process.env.MONGO_DB_PASSWORD;
 
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 const {MongoClient, ServerApiVersion} = require("mongodb");
-const uri = `mongodb+srv://${userName}:${password}@cluster0.k0pc58w.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${userName}:${password}@poke-man.0zopgjt.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function add(variables) {
