@@ -13,7 +13,7 @@ import { config } from 'dotenv';
 const app = express();
 
 const httpSuccessStatus = 200;
-const portNumber = 5000;
+const portNumber = 3000;
 app.listen(portNumber);
 //include css file
 app.use(express.static(process.cwd() + '/templates/'));

@@ -5,7 +5,8 @@
   "description": "Pokemon Final",
   "exports": "./processing.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node processing.js"
   },
   "author": "",
   "license": "ISC",

@@ -17,3 +17,5 @@ https://pokeapi.co
 
 # YouTube Demo Video
 https://youtu.be/TLnMDbvTWEo
+
+# Rendered Page Link
